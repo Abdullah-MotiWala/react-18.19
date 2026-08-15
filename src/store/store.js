@@ -1,16 +1,27 @@
-import { createStore } from "redux";
-import reducer from "./reducer"
-import storageModule from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
+// import { createStore } from "redux";
+// import reducer, { countReducer } from "./reducer"
+// import storageModule from "redux-persist/lib/storage";
+// import { persistReducer, persistStore } from "redux-persist";
 
-const storage = storageModule.default || storageModule;
+import { configureStore } from "@reduxjs/toolkit";
+import { counterReducer } from "./slice/counter";
+import { useReducer } from "react";
 
-console.log("storage:", storage);
+// const storage = storageModule.default || storageModule;
 
-const config = { storage, key: "root" }
+// console.log("storage:", storage);
 
-const persistedReducer = persistReducer(config, reducer)
+// const config = { storage, key: "root" }
 
-const store = createStore(persistedReducer)
-const persistedStore = persistStore(store)
-export { store, persistedStore }
+// const persistedReducer = persistReducer(config, reducer)
+
+// const store = createStore(persistedReducer)
+// const persistedStore = persistStore(store)
+// export { store, persistedStore }
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+    // user:useReducer
+  },
+});

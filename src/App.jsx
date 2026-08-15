@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Layout>
-        <p>{state.count.value}</p>
+        <p>{state.counter.value}</p>
         <IncreaseCounter />
         <DecreaseCounter />
         <ManualCounter />
