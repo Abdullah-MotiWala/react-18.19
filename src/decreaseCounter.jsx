@@ -1,7 +1,5 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { DECREMENT } from './store/constants'
-import { Decrement } from './store/actions'
 import { decrement } from './store/slice/counter'
 
 const DecreaseCounter = () => {

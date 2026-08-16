@@ -5,7 +5,14 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { counterReducer } from "./slice/counter";
-import { useReducer } from "react";
+import { cartReducer } from "./slice/cart";
+
+// import { createStore } from "redux";
+// import { cartReducer } from "./reducer";
+
+// import { configureStore } from "@reduxjs/toolkit";
+// import { counterReducer } from "./slice/counter";
+// import { useReducer } from "react";
 
 // const storage = storageModule.default || storageModule;
 
@@ -19,9 +26,17 @@ import { useReducer } from "react";
 // const persistedStore = persistStore(store)
 // export { store, persistedStore }
 
+// export const store = configureStore({
+//   reducer: {
+//     counter: counterReducer,
+//     // user:useReducer
+//   },
+// });
+
+// export const store = createStore(cartReducer)
 export const store = configureStore({
   reducer: {
+    cart: cartReducer,
     counter: counterReducer,
-    // user:useReducer
   },
 });

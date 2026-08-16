@@ -1,61 +1,84 @@
-import { combineReducers } from "redux";
-import { DECREMENT, INCREMENT, MANUAL } from "./constants";
+// import { combineReducers } from "redux";
+// import { DECREMENT, INCREMENT, MANUAL } from "./constants";
 
-const countInitialState = {
-  value: 1,
+import { CART_ADD, CART_DELETE, CART_REMOVE } from "./constants";
+
+// const countInitialState = {
+//   value: 1,
+// };
+// const userInitialState = {
+//   info: {},
+// };
+
+// export const countReducer = (state = countInitialState, { type, value }) => {
+//   console.log("===running");
+
+//   switch (type) {
+//     case INCREMENT:
+//       return { ...state, value: state.value + 1 };
+
+//     case DECREMENT:
+//       return { ...state, value: state.value - 1 };
+
+//     case MANUAL:
+//       return { ...state, value: state.value + value };
+
+//     default:
+//       return state;
+
+//     // case "ENTERY":
+//     //     return initialState
+//   }
+// };
+
+// const userReducer = (state = userInitialState, { type, value }) => {
+//   console.log("===running");
+
+//   switch (type) {
+//     case "INCREMENTs":
+//       return { ...state, count: state.count + 1 };
+
+//     case "DECREMENTs":
+//       return { ...state, count: state.count - 1 };
+
+//     case "MANUALs":
+//       return { ...state, count: state.count + value };
+
+//     default:
+//       return state;
+
+//     // case "ENTERY":
+//     //     return initialState
+//   }
+// };
+
+// const reducer = combineReducers({
+//   user: userReducer,
+//   count: countReducer,
+// });
+
+// export default reducer;
+
+// // export { countReducer, userReducer }
+
+const cartInitialState = {
+  cartItems: [{ id: 1, name: "dell" }],
+  userId: null,
+  paymentDetails: {},
 };
-const userInitialState = {
-  info: {},
-};
 
-export const countReducer = (state = countInitialState, { type, value }) => {
-  console.log("===running");
+export function cartReducer(state = cartInitialState, action) {
+  switch (action.type) {
+    case CART_DELETE:
+      return { ...state, cartItems: [] };
 
-  switch (type) {
-    case INCREMENT:
-      return { ...state, value: state.value + 1 };
+    case CART_ADD:
+      return { ...state, cartItems: [...state.cartItems, action.payload] };
 
-    case DECREMENT:
-      return { ...state, value: state.value - 1 };
-
-    case MANUAL:
-      return { ...state, value: state.value + value };
+    case CART_REMOVE:
+      return {...state,cartItems:state.cartItems.filter((item)=>item.id !== action.payload)}
 
     default:
       return state;
-
-    // case "ENTERY":
-    //     return initialState
   }
-};
-
-const userReducer = (state = userInitialState, { type, value }) => {
-  console.log("===running");
-
-  switch (type) {
-    case "INCREMENTs":
-      return { ...state, count: state.count + 1 };
-
-    case "DECREMENTs":
-      return { ...state, count: state.count - 1 };
-
-    case "MANUALs":
-      return { ...state, count: state.count + value };
-
-    default:
-      return state;
-
-    // case "ENTERY":
-    //     return initialState
-  }
-};
-
-const reducer = combineReducers({
-  user: userReducer,
-  count: countReducer,
-});
-
-
-export default reducer;
-
-// export { countReducer, userReducer }
+}
